@@ -4,6 +4,7 @@ namespace App\Http\Livewire;
 
 use Livewire\Component;
 use App\Models\Producto;
+//use Livewire\WithPagination;
 
 class Productos extends Component
 {
@@ -46,7 +47,7 @@ class Productos extends Component
     {
         //dd($id);
         $producto = Producto::findOrFail($id);
-        $this->id = $id;
+        $this->id_producto = $id;
         $this->descripcion = $producto->descripcion;
         $this->cantidad = $producto->cantidad;
         $this->abrirModal();
@@ -56,6 +57,7 @@ class Productos extends Component
     {
         
         $producto = Producto::findOrFail($id)->delete();
+        session()->flash('mensaje', '¡Registro eliminado correctamente!');
     }
 
     public function guardar()
